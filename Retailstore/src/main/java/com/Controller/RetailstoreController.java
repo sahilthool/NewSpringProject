@@ -144,18 +144,28 @@ public class RetailstoreController {
 	}
 	
 	@RequestMapping("/GenerateBill")
-	public ModelAndView generateBillController() {
+	public ModelAndView generateBillController(HttpServletRequest request) {
 
-		//HttpSession session = request.getSession();
-		//session.setAttribute("customer", customer);
+		ModelAndView modelAndView = new ModelAndView();
+		HttpSession session = request.getSession();
+		session.setAttribute("customer", customer);
 		
-    //      String user_name = customer.getUser_Name();
+       String user_name = customer.getUser_Name();
 		
-	int customerId=4;
-		//	int customerId = customerService.searchCustomerID(user_name);
+	
+		int customerId = customerService.searchCustomerID(user_name);
 		List<Cart> cart = gbs.generate_bill(customerId);
 
-		return new ModelAndView("GenerateBill", "itemList", cart);
+		double total=gbs.total_bill(customerId);
+		
+		String message="Total :"+total;
+		modelAndView.addObject("message", message);
+		//modelAndView.setViewName("Output");
+		modelAndView.addObject("cartList", cart);
+			
+		modelAndView.setViewName("GenerateBill");
+		
+		return  modelAndView;
 
 	}
 	
