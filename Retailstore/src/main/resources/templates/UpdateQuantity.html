@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Update Item Quantity</title>
 </head>
 <body>
+<hr>
+<h2 th:text="'Welcome '+${session.customer.User_Name}+'!'"></h2>
+<hr>
+<h1>Update Quantity of Product in Cart</h1>
+	<form action="#" method="post" th:action="@{./updateQuantityRes}">
+		
+		Enter Item Id : <input type="text" name="item_id"><br><br>
+		Update Quantity to: <input type="text" name="updatedQuantity"><br><br>
+		<input type="submit" name="update" value="Update">
+		
+	</form>
+	
+<br><br>
+<a href="./menu">Go To Main Page</a>
 
 </body>
 </html>

@@ -95,8 +95,9 @@ public class transactionDetailsServiceImpl implements transactionDetailsService 
 	}
 
 	@Override
-	public void showalltransactionDetails() {
-		td.showalltransactionDetails();
+	public List<Transaction_Details> showalltransactionDetails() {
+		
+		return td.showalltransactionDetails();
 		
 	}
 

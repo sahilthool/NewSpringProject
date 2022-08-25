@@ -30,18 +30,19 @@ public class TransactionDetailsDaoImpl implements TransactionDetailsDao {
 	
 
 	@Override
-	public void showalltransactionDetails() {    
+	public List<Transaction_Details> showalltransactionDetails() {    
 		String query="SELECT * FROM transaction_details";
-		List<Transaction_Details> list=jdbcTemplate.query(query, new TransactionDetailsRowMapper());
+		List<Transaction_Details> listtd=jdbcTemplate.query(query, new TransactionDetailsRowMapper());
 		
 		System.out.println("Transaction_id    Item_Id    quantity");
-			for(Transaction_Details td:list){
+			for(Transaction_Details td:listtd){
 				int Transaction_id=td.getTransaction_ID();
 				int Item_Id=td.getItem_ID();
 	        int quantity=td.getQuantity();
 	
 				System.out.println(Transaction_id+" "+Item_Id+" "+quantity);
 			}
+			return listtd;
 
 	}
 

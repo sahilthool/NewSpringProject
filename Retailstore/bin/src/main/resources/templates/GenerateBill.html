@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Bill</title>
 </head>
 <body>
-
+<h1>Retail Store</h1>
+<hr>
+<h2 th:text="'Welcome '+${session.customer.User_Name}+'!'"></h2>
+<hr>
+<table border="1">
+	<tr>
+		<th>Item ID</th>
+		<th>Item Name</th>
+		<th>Quantity</th>
+		<th>Price</th>		
+	</tr>
+	<tr th:each="cart : ${cartList}">
+		<td th:text="${cart.item_Id}"></td>
+		<td th:text="${cart.item_Name}"></td>
+		<td th:text="${cart.quantity}"></td>
+		<td th:text="${cart.price}"></td>		
+	</tr>
+</table>
+<br><br>
+<h2 th:text="${message}"></h2>
+<br>
+<br><br>
+<a href="./menu">Go To Main Page</a>
 </body>
 </html>

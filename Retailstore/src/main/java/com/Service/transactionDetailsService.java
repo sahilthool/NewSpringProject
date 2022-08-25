@@ -8,7 +8,7 @@ import com.Bean.Transaction_Details;
 
 public interface transactionDetailsService {
 	
-	void showalltransactionDetails();
+	List<Transaction_Details> showalltransactionDetails();
 	boolean addtransactionDetail(Transaction_Details trans_details);
 	boolean deletetransactionDetail(int id);
 	List<Transaction_Details> searchTransactionDetails(int transid);

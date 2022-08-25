@@ -169,6 +169,44 @@ public class RetailstoreController {
 
 	}
 	
+	
+	@ModelAttribute("cartItemIds")
+	public List<Integer> getCartItemIds(){
+		List<Transaction_Details> cartItems=transactionDetailsService.showalltransactionDetails();
+		
+		return cartItems.stream()
+				.map(Transaction_Details::getItem_ID)
+				.distinct().sorted().collect(Collectors.toList());
+	}
 
+	
+	
+	@RequestMapping("/updateQuantityRes")
+	public ModelAndView quantityUpdated(HttpServletRequest request) {
+		String item_id=request.getParameter("cartItemId");
+		String quantity=request.getParameter("updatedQuantity");
+		boolean res = transactionDetailsService.updateitemquantity(Integer.parseInt(item_id),Integer.parseInt(quantity));
+		System.out.println(item_id+quantity);
+		ModelAndView modelAndView = new ModelAndView();
+		if (res==true){
+			String message = "Now you are purchasing "+quantity+ " quantity for Item Id "+item_id;
+			modelAndView.addObject("message",message);
+		}
+		else {
+			String message = "Quantity not Updated\nSomething went wrong";
+			modelAndView.addObject("message",message);
+		}
+		
+		modelAndView.setViewName("Output");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/UpdateQuantity")
+	public ModelAndView updateQuantity() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("UpdateQuantity");
+		return modelAndView;
+
+	}
 
 }
