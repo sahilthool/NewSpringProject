@@ -1,4 +1,6 @@
 package com.Bean;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -9,11 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Bill {
-	int customer_id;
-	int transaction_id;
-	String Customer_Name;
-	 int item_Id;
-	 String item_Name;
-	 int quantity;
-	 double price;
+	List<Cart> cartList;
+	double grandTotal;
 }
